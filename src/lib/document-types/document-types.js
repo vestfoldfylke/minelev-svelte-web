@@ -379,7 +379,7 @@ export const documentTypes = [
       if (content.bekreftelse.parorendeData.length === 0) throw new Error('Må ha minst en pårørerende for eleven')
       for (const person of content.bekreftelse.parorendeData) {
         if (!person.navn) throw new Error('Pårørerende for eleven mangler "Navn"')
-        person.telefon = person.telefon ? person.telefon.toString() : ''
+        person.telefon = person.telefon?.toString() || ''
         if (!person.telefon) throw new Error('Pårørerende for eleven mangler "Telefon"')
         if (!isValidMobile(person.telefon)) throw new Error(`Telefonnummer ${person.telefon} til pårørende er ikke et gyldig telefonnummer`)
       }
